@@ -1,0 +1,318 @@
+/*
+ * Estilos para a página de vendas da Imersão 21 Dias com Luiz Zech.
+ * Inspirado nas cores e na estrutura de páginas de vendas de sucesso: uso de
+ * contrastes fortes para chamadas de ação, seções bem definidas e tipografia
+ * limpa e moderna.
+ */
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #0f1b2a; /* cor de texto escura para boa legibilidade */
+  line-height: 1.6;
+  background-color: #f5f5f5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Botões */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background-color: #f04d23;
+  color: #fff;
+  border: none;
+}
+
+.btn--primary:hover {
+  background-color: #d63d17;
+  transform: translateY(-2px);
+}
+
+.btn--secondary {
+  background-color: #0f1b2a;
+  color: #fff;
+  border: none;
+}
+
+.btn--secondary:hover {
+  background-color: #08101b;
+  transform: translateY(-2px);
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #0f1b2a 0%, #1c2c45 100%);
+  color: #fff;
+  padding: 80px 0;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.hero__subtitle {
+  font-size: 1.125rem;
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
+/* Formulário de lead */
+.lead-form {
+  /*
+   * Ajustes visuais do formulário: aumentamos o espaçamento interno,
+   * suavizamos as bordas e aplicamos uma leve sombra para destacá‑lo
+   * do fundo. Também limitamos a largura máxima para uma melhor
+   * leitura em telas grandes.
+   */
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 600px;
+}
+
+.lead-form__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f1b2a;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.lead-form__group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.lead-form__group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #0f1b2a;
+}
+
+.lead-form__group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #f9fafb;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* Destaque de foco nos campos do formulário */
+.lead-form__group input:focus {
+  outline: none;
+  border-color: #f04d23;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(240, 77, 35, 0.25);
+}
+
+/* Ajuste visual do botão dentro do formulário */
+.lead-form .btn--primary {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+/* Layout responsivo das linhas do formulário. Cada linha utiliza flexbox para
+   exibir dois campos lado a lado quando houver espaço suficiente. Em telas
+   menores, os campos quebram automaticamente para a linha seguinte. */
+.lead-form__row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.lead-form__row .lead-form__group {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+/* Seções gerais */
+.section {
+  padding: 60px 0;
+  background-color: #ffffff;
+}
+
+.section--light {
+  background-color: #f5f7fa;
+}
+
+.section__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f1b2a;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.section__content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Cards de benefícios */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #f5f7fa;
+  border-radius: 8px;
+  padding: 24px;
+  flex: 1 1 260px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #f04d23;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Linha do tempo / passos */
+.timeline {
+  list-style: none;
+  padding-left: 0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.timeline li {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  position: relative;
+  padding-left: 24px;
+}
+
+.timeline li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #f04d23;
+}
+
+.timeline__title {
+  font-weight: 600;
+  color: #0f1b2a;
+  margin-bottom: 4px;
+}
+
+.timeline__text {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* CTA final */
+.cta {
+  background-color: #0f1b2a;
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.cta__content h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.cta__content p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 24px auto;
+}
+
+.cta .btn--secondary {
+  margin-top: 8px;
+}
+
+.cta__note {
+  display: block;
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: #b4c4d5;
+}
+
+/* Rodapé */
+.footer {
+  background-color: #1c2c45;
+  color: #fff;
+  padding: 24px 0;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero__title {
+    font-size: 2rem;
+  }
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+  .timeline li {
+    padding-left: 20px;
+  }
+}
