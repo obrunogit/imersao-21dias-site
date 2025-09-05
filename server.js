@@ -23,11 +23,36 @@ const path = require('path');
 const url = require('url');
 const crypto = require('crypto');
 
-// Load service account credentials from the JSON key file. The path
-// defaults to the file provided by the user; you can override via
-// SERVICE_ACCOUNT_KEY_FILE environment variable.
+// Load service account credentials for Google Sheets API.
+//
+// In production, secrets should not be committed to the codebase. To support
+// different deployment strategies, this code attempts to load the JSON
+// credentials from one of two sources:
+//  1. If the environment variable `GOOGLE_CREDENTIALS` is defined, it is
+//     assumed to contain the full JSON contents of the service account key.
+//     This allows platforms like Railway to store the credentials securely
+//     without committing them to the repository.
+//  2. Otherwise, the code falls back to reading from a file on disk. The
+//     filename can be overridden via the `SERVICE_ACCOUNT_KEY_FILE` environment
+//     variable; by default it points to the bundled key file. Note that the
+//     bundled key file is excluded from the public repository to avoid
+//     accidental exposure. When running locally, ensure the JSON file is
+//     present in the project root or specify its path via
+//     `SERVICE_ACCOUNT_KEY_FILE`.
 const KEY_PATH = process.env.SERVICE_ACCOUNT_KEY_FILE || path.join(__dirname, 'massive-dryad-171019-77c26aafba04.json');
-const credentials = JSON.parse(fs.readFileSync(KEY_PATH, 'utf8'));
+let credentials;
+if (process.env.GOOGLE_CREDENTIALS) {
+  try {
+    credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+  } catch (err) {
+    console.error('Failed to parse GOOGLE_CREDENTIALS environment variable:', err);
+    throw err;
+  }
+} else {
+  // Read credentials from a local file as a fallback. The file must exist
+  // locally when running outside of a hosted environment.
+  credentials = JSON.parse(fs.readFileSync(KEY_PATH, 'utf8'));
+}
 const { client_email, private_key } = credentials;
 const SHEET_ID = process.env.SHEET_ID || '1bQd-wL3I4W2dBu68TNeuhwSxlLwePIPdmZtl7a6lI8U';
 // Define the range (sheet name and columns) to which new rows will be appended.
